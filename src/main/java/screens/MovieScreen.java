@@ -13,12 +13,10 @@ public class MovieScreen {
         this.driver = driver;
     }
 
-    // Retrieve movie name from movie screen
     public String getMovieNameFromMovieScreen() {
         return driver.findElement(movieName).getText();
     }
 
-    //Back to Home screen
     public void backToHomeScreen() {
         driver.findElement(backToHomeButton).click();
     }

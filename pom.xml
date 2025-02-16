@@ -15,14 +15,13 @@
     </properties>
 
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/io.appium/java-client -->
+
         <dependency>
             <groupId>io.appium</groupId>
             <artifactId>java-client</artifactId>
             <version>9.4.0</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.testng/testng -->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
@@ -30,8 +29,6 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Allure TestNG -->
-        <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-testng -->
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-testng</artifactId>
@@ -43,6 +40,7 @@
             <artifactId>allure-java-commons</artifactId>
             <version>2.23.0</version>
         </dependency>
+
     </dependencies>
 
 

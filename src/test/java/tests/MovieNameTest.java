@@ -19,12 +19,12 @@ public class MovieNameTest {
 
     @BeforeClass
     public void startDriver() {
-        driver = DriverManager.getDriver(); // Initialize driver from DriverManager
+        driver = DriverManager.getDriver();
         homeScreen = new HomeScreen((AndroidDriver) driver);
         movieScreen = new MovieScreen((AndroidDriver) driver);
     }
 
-    // DataProvider for multiple movies (dynamic testing)
+    // TODO: Optimize this dataProvider for large datasets by reading from json file
     @DataProvider(name = "movieNames")
     public Object[][] getMovieNames() {
         return new Object[][] {
@@ -39,21 +39,17 @@ public class MovieNameTest {
     @Story("User should see the correct movie name")
     @Step("Click on movie and verify details")
     @Test(dataProvider = "movieNames",description = "Verify that movie name in home screen is the same in the movie screen")
-    public void verifyMovieNameConsistency(String movieName) throws InterruptedException {
+    public void verifyMovieNameConsistency(String movieName) {
         System.out.println("Testing movie: " + movieName);
 
         homeScreen.searchForMovie(movieName);
 
-        // Get movie name from home screen
         String homeMovieName = homeScreen.getMovieNameFromHomeScreen(movieName);
 
-        // Click on the movie
         homeScreen.clickOnMovieByName(movieName);
 
-        // Get movie name from movie details screen
         String movieScreenName = movieScreen.getMovieNameFromMovieScreen();
 
-        // Assert that names match
         Assert.assertEquals(homeMovieName, movieScreenName, "Movie names do not match!");
 
         System.out.println("Movie name verified successfully: " + movieName);

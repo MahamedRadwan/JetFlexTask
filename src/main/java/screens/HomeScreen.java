@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+
 public class HomeScreen {
     private AndroidDriver driver;
 
@@ -22,31 +23,25 @@ public class HomeScreen {
         this.driver = driver;
     }
 
-    //search for movie
-    public void searchForMovie(String movieName) throws InterruptedException {
-        Thread.sleep(2000);
+    public void searchForMovie(String movieName) {
         driver.findElement(searchInput).sendKeys(movieName);
     }
 
-    //Opens Movie
     public void clickOnMovieByName(String movieName)  {
         String movieXpath = movieNameXpath + movieName + "']";
         driver.findElement(By.xpath(movieXpath)).click();
     }
 
-    //Retrieve Movie By name
     public String getMovieNameFromHomeScreen(String movieName) {
         String xpath = movieNameXpath + movieName + "']";
         return driver.findElement(By.xpath(xpath)).getText();
     }
 
-    //Opens Filter Menu from Home Screen
     public void openFilterMenu() {
         driver.findElement(filterMenuButton).click();
 
     }
 
-    // Select Release Date option from Filter Menu
     public void clickOnReleaseDateFilterButton() {
         WebElement radioButton = driver.findElement(releaseDateFilterButton);
         if (!radioButton.isSelected()) {
@@ -58,12 +53,10 @@ public class HomeScreen {
         driver.findElement(closeFilterMenuButton).click();
     }
 
-    // Retrieve all displayed dates dynamically
     public List<WebElement> getDisplayedMovieReleaseDates() {
         return driver.findElements(movieDate);
     }
 
-    //compare the displayed date with today's system date
     public boolean areAllDatesInFuture() {
         List<WebElement> dateElements = getDisplayedMovieReleaseDates();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -84,7 +77,7 @@ public class HomeScreen {
                 return false;
             }
         }
-        return true; // All dates are in the future
+        return true;
     }
 
 }

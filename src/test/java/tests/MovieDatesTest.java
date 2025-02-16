@@ -29,19 +29,14 @@ public class MovieDatesTest {
     public void verifyReleaseDateFilterShowsFutureMoviesOnly() {
         System.out.println("Applying release date filter...");
 
-        // open filter menu
         homeScreen.openFilterMenu();
 
-        // Select release date filter
         homeScreen.clickOnReleaseDateFilterButton();
 
-        // close filter menu
         homeScreen.closeFilterMenu();
 
-        // Validate all dates are in the future
         boolean allDatesAreFuture = homeScreen.areAllDatesInFuture();
 
-        // Assert
         Assert.assertTrue(allDatesAreFuture, "Some movies have past release dates!");
         System.out.println("All release dates are in the future.");
     }

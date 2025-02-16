@@ -27,15 +27,14 @@ public class DriverManager {
 
     public static AppiumDriver getDriver() {
         if (driver == null) {
-            loadProperties();  // Load properties once
-            AppiumServerManager.startServer();  // Ensure Appium server is running
+            loadProperties();
+            AppiumServerManager.startServer();
 
             try {
 
                 String appiumServerUrl = AppiumServerManager.getServerUrl().toString();
                 System.out.println(appiumServerUrl);
 
-                // Set Desired Options
                 UiAutomator2Options options = new UiAutomator2Options()
                         .setPlatformName(properties.getProperty("platformName"))
                         .setDeviceName(properties.getProperty("deviceName"))
@@ -43,7 +42,6 @@ public class DriverManager {
                         .setAutomationName(properties.getProperty("automationName"))
                         .setAppActivity (properties.getProperty("appActivity"))
                         .setAppPackage(properties.getProperty("appPackage"));
-                // Start AndroidDriver
                 driver = new AndroidDriver(new URL(appiumServerUrl), options);
                 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
                 System.out.println("Driver initialized successfully!");
@@ -61,7 +59,7 @@ public class DriverManager {
         if (driver != null) {
             driver.quit();
             driver = null;
-            AppiumServerManager.stopServer(); // Stop Appium server after tests
+            AppiumServerManager.stopServer();
         }
     }
 }
